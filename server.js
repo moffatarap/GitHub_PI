@@ -49,7 +49,7 @@ request({ url: weatherAPI, json: true }, function (err, res, weatherDataJSON) {
     if (err) {
         throw err;
     }
-weatherDataTest = JSON.stringify(weatherDataJSON);
+weatherDataTest = JSON.stringify(weatherDataJSON, null, 4);
 //weatherDataTest = weatherDataJSON.toString();
     console.log(weatherDataJSON);
 SaveDataToFile(); //calls save data to file
