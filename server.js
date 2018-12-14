@@ -5,7 +5,9 @@
 /* =VARABLES= */
 var weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=Teran&appid=25373d51e2a3b0d4b450fb5f133a0137";
 var weatherDataJSON; //holds empty varable for weather data
-var weatherDataTest;
+var weatherDataSave; //saves weather data to file
+var date = new Date(); //saves date
+var lastSavedString = "Weather Last Saved  ";
 /** ==PACKAGES ==  **/
 var request = require('request'); //uses request API for getting JSON
 const fs = require('fs'); //uses file system API
@@ -30,14 +32,32 @@ server.listen(port, hostname, function() {
 
 /* #0.2 SAVE DATA TO FILE FUNCTION */
 function SaveDataToFile(){
-console.log("DATA" + weatherDataTest);
-fs.writeFile("/home/pi/Documents/Iran_Weather/weatherlog.txt", weatherDataTest, function(err) {
+//DEBUGGING console.log("DATA" + weatherDataSave);
+
+//#1 Saves current weather data to txt file locally
+fs.writeFile("/home/pi/Documents/Iran_Weather/weatherlog.txt", weatherDataSave, function(err) {
     if(err) {
         return console.log(err);
     }
 
-    console.log("The file was saved!");
+
 });
+lastSavedString += date.toString(); //adds string and current date to json  in order to know last time data was checked
+
+//#2 appends date and time of when the weather was last checked to json
+fs.appendFile("/home/pi/Documents/Iran_Weather/weatherlog.txt", lastSavedString, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log("WEATHER JSON DATA SAVED");
+});
+
+
+
+
+
+
 return; //returns to previous task
 }
 
@@ -49,7 +69,7 @@ request({ url: weatherAPI, json: true }, function (err, res, weatherDataJSON) {
     if (err) {
         throw err;
     }
-weatherDataTest = JSON.stringify(weatherDataJSON, null, 4);
+weatherDataSave = JSON.stringify(weatherDataJSON, null, 4);
 //weatherDataTest = weatherDataJSON.toString();
     console.log(weatherDataJSON);
 SaveDataToFile(); //calls save data to file
