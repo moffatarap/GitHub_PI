@@ -1,1 +1,1 @@
-[object Object]
+{"coord":{"lon":-65.98,"lat":-17.33},"weather":[{"id":801,"main":"Clouds","description":"few clouds","icon":"02d"}],"base":"stations","main":{"temp":295.296,"pressure":701.18,"humidity":36,"temp_min":295.296,"temp_max":295.296,"sea_level":1016.52,"grnd_level":701.18},"wind":{"speed":1.42,"deg":40.0097},"clouds":{"all":24},"dt":1544813965,"sys":{"message":0.0043,"country":"BO","sunrise":1544780654,"sunset":1544828032},"id":3919968,"name":"Teran","cod":200}
