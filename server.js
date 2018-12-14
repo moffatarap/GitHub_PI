@@ -29,10 +29,12 @@ server.listen(port, hostname, function() {
 
 
 /* #1 ACCESS WEATHER FROM IRAN USING OPEN WEATHER MAP */
+function weatherGet(){
+
 request({ url: weatherAPI, json: true }, function (err, res, json) {
     if (err) {
         throw err;
     }
     console.log(json);
-
 });
+
