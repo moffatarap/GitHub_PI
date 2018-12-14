@@ -31,14 +31,14 @@
     "clouds": {
         "all": 48
     },
-    "dt": 1544816001,
+    "dt": 1544818643,
     "sys": {
-        "message": 0.0039,
+        "message": 0.0043,
         "country": "BO",
-        "sunrise": 1544780654,
-        "sunset": 1544828033
+        "sunrise": 1544780655,
+        "sunset": 1544828034
     },
     "id": 3919968,
     "name": "Teran",
     "cod": 200
-}Weather Last Saved  Sat Dec 15 2018 08:43:09 GMT+1300 (New Zealand Daylight Time)
+}Weather Last Saved  Sat Dec 15 2018 09:23:33 GMT+1300 (New Zealand Daylight Time)

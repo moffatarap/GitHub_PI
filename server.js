@@ -13,22 +13,9 @@ var request = require('request'); //uses request API for getting JSON
 const fs = require('fs'); //uses file system API
 
 
-/* #0 SETUP SERVER FOR DEBUGGING  */
-const http = require('http');
-const hostname = '127.0.0.1';
-const port = 3000;
+/* 0.1 START FUNCTION */
+weatherGet();
 
-/* #0.1 SERVER FUNCTION */
-const server = http.createServer(function(req, res) {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
-});
-
-server.listen(port, hostname, function() {
-  console.log('Server running at http://'+ hostname + ':' + port + '/');
-  weatherGet(); //calls weather function to run after server has started
-});
 
 /* #0.2 SAVE DATA TO FILE FUNCTION */
 function SaveDataToFile(){
@@ -52,12 +39,6 @@ fs.appendFile("/home/pi/Documents/Iran_Weather/weatherlog.txt", lastSavedString,
 
     console.log("WEATHER JSON DATA SAVED");
 });
-
-
-
-
-
-
 return; //returns to previous task
 }
 
