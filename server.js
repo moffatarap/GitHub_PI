@@ -7,6 +7,8 @@ var weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=Teran&appid=
 var weatherDataJSON; //holds empty varable for weather data
 var weatherDataSave; //saves weather data to file
 var date = new Date(); //saves date
+var dateNow = date.getHours(); //get current hours
+var loopCount = 0;
 var lastSavedString = "Weather Last Saved  ";
 /** ==PACKAGES ==  **/
 var request = require('request'); //uses request API for getting JSON
@@ -14,6 +16,7 @@ const fs = require('fs'); //uses file system API
 
 
 /* 0.1 START FUNCTION */
+console.log("Starting");
 weatherGet();
 
 
@@ -29,6 +32,7 @@ fs.writeFile("/home/pi/Documents/Iran_Weather/weatherlog.txt", weatherDataSave, 
 
 
 });
+console.log("Adding Current Time");
 lastSavedString += date.toString(); //adds string and current date to json  in order to know last time data was checked
 
 //#2 appends date and time of when the weather was last checked to json
@@ -45,15 +49,34 @@ return; //returns to previous task
 
 /* #1 ACCESS WEATHER FROM IRAN USING OPEN WEATHER MAP */
 function weatherGet(){
+console.log("Weather Get Called");
 
 request({ url: weatherAPI, json: true }, function (err, res, weatherDataJSON) {
     if (err) {
         throw err;
     }
+
+console.log(weatherDataJSON); //displays current weather
+
+/* #1.2 FORMAT WEATHER DATA NICELY AND SAVE TO JSON */
 weatherDataSave = JSON.stringify(weatherDataJSON, null, 4);
-//weatherDataTest = weatherDataJSON.toString();
-    console.log(weatherDataJSON);
+console.log(weatherDataJSON); //displays current weather
 SaveDataToFile(); //calls save data to file
-//weatherDataJSON === json; //sets varable of weatherDataJSON to be JSON
+
+console.log("Task Completed");
 });
+getCurrentTimeLoop();
+}
+
+
+/* #2 GET CURRENT TIME */
+var loopCount = 0;
+function getCurrentTimeLoop(){
+
+dateNow = date.getHours();
+console.log(dateNow);
+loopCount++;
+console.log(loopCount);
+getCurrentTimeLoop();
+
 }
